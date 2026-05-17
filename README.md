@@ -8,7 +8,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-coming_soon-red?logo=arxiv)](#)
 [![License](https://img.shields.io/badge/LICENSE-MIT-green)](./LICENSE)
 
-![Workflow](./assets/workflow.png)
+![Workflow](./assets/workflow.jpg)
 
 ## Overview
 
