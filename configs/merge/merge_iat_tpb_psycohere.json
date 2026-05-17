@@ -1,0 +1,53 @@
+{
+  "_doc": "psycohere_v1 — IAT x TPB between-session merge. iat_runs.csv has one row per (condition x test_id x order_id). Episode keys propagate through to align_score; session aggregation in merge_tpb_with_behavior.py averages align_score across episodes per (condition x policy). bias_norm is globally normalized across all rows kept after --behavior_where (typically coverage >= 0.5). Alignment: unbiased_categorization intention -> 1-bias_norm; intuitive_fast intention -> bias_norm.",
+  "task_name": "iat",
+  "framework": "tpb",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "tpb": {
+    "construct_cols": [
+      "attitude_mean",
+      "subjective_norm_mean",
+      "pbc_mean",
+      "intention_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "test_id",
+      "order_id"
+    ],
+    "carry_cols": [
+      "bias",
+      "coverage"
+    ],
+    "precompute_cols": [
+      {
+        "name": "bias_safe",
+        "expr": "pd.to_numeric(bias, errors='coerce')"
+      },
+      {
+        "name": "bias_norm",
+        "expr": "(bias_safe - bias_safe.min()) / max(bias_safe.max() - bias_safe.min(), 1e-6)"
+      }
+    ]
+  },
+  "alignment": {
+    "unbiased_categorization": {
+      "expr": "1.0 - bias_norm",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    },
+    "intuitive_fast": {
+      "expr": "bias_norm",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    }
+  }
+}

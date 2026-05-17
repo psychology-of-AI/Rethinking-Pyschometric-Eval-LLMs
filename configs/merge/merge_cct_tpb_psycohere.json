@@ -1,0 +1,55 @@
+{
+  "_doc": "psycohere_v1 — CCT x TPB between-session merge. Join TPB session_sr to CCT session_beh on perturbation key. Works for both grid and personas (same join_keys). Alignment: loss_averse intention → 1-mean_k_norm; gain_seeking intention → mean_k_norm.",
+  "task_name": "cct",
+  "framework": "tpb",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "tpb": {
+    "construct_cols": [
+      "attitude_mean",
+      "subjective_norm_mean",
+      "pbc_mean",
+      "intention_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "task_seed",
+      "draw_seed",
+      "replicate_index"
+    ],
+    "carry_cols": [
+      "mean_k",
+      "loss_rate",
+      "total_payoff",
+      "total_expected_payoff",
+      "prop_max_flips",
+      "max_flips",
+      "n_rounds"
+    ],
+    "precompute_cols": [
+      {
+        "name": "mean_k_norm",
+        "expr": "pd.to_numeric(mean_k, errors='coerce') / pd.to_numeric(max_flips, errors='coerce').clip(lower=1)"
+      }
+    ]
+  },
+  "alignment": {
+    "loss_averse": {
+      "expr": "1.0 - mean_k_norm",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    },
+    "gain_seeking": {
+      "expr": "mean_k_norm",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    }
+  }
+}

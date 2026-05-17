@@ -1,0 +1,250 @@
+{
+  "source": {
+    "dataset": "proj-persona/PersonaHub",
+    "subset": "persona",
+    "split": "train",
+    "note": "Diversity-selected using TF-IDF + greedy max-min distance."
+  },
+  "sampling": {
+    "method": "greedy_maxmin_tfidf",
+    "n_select": 30,
+    "pool_size": 500,
+    "seed": 42,
+    "seed_idx": 0,
+    "english_only": true,
+    "min_ascii_ratio": 0.95,
+    "max_persona_chars": 500,
+    "ngram_range": [
+      1,
+      2
+    ],
+    "prepend_empty": false,
+    "diversity_stats": {
+      "mean_pairwise_cosine_dist": 0.9991485675404257,
+      "min_pairwise_cosine_dist": 0.9910944609695207,
+      "max_pairwise_cosine_dist": 1.0
+    }
+  },
+  "selections": {
+    "seed_42": {
+      "seed": 42,
+      "n": 30,
+      "indices": [
+        167621,
+        194393,
+        64196,
+        26868,
+        187700,
+        191294,
+        133085,
+        114845,
+        118354,
+        25409,
+        68358,
+        62570,
+        114867,
+        183013,
+        148729,
+        64543,
+        144619,
+        151760,
+        49862,
+        8234,
+        1885,
+        100864,
+        123907,
+        3009,
+        42357,
+        196077,
+        82694,
+        197542,
+        110785,
+        2441
+      ],
+      "persona_prompts": [
+        "A talented and experienced makeup artist who provides honest and detailed product reviews",
+        "I am a political columnist known for being mindful of the ever-shifting dynamics in British politics.",
+        "A software developer focused on front-end web development using JavaScript",
+        "A lobbyist representing industries that may be impacted by biodiversity conservation regulations",
+        "A visually impaired college student from Belfast, Northern Ireland",
+        "A traditional boxer transitioning to muay thai",
+        "A hobbyist potter with a modern approach, constantly experimenting with new techniques",
+        "A retired Saudi Arabian businessman closely following national telecom market trends",
+        "A Paranormal Events Organizer",
+        "a former Olympic discus thrower",
+        "Un piloto profesional que compite en carreras de automóviles a nivel internacional",
+        "a TV show set designer",
+        "a Jamaican woman studying education policy",
+        "A renowned gallery owner who curates exhibitions featuring iconic rock photography",
+        "A football coach who has never seen Josh Woods play.",
+        "a Brazilian botanical enthusiast who loves reading about native plants",
+        "a loyal customer who only buys animal-friendly products",
+        "An architect who admires Pier Massimo Cinquetti's career",
+        "a youth pastor who enjoys playing video games",
+        "A technologically-inept, older judge who needs guidance in understanding complex digital evidence",
+        "A bus driver who dislikes gossipy politicians.",
+        "A biology major seeking help in improving their quantitative reasoning skills",
+        "A public health researcher investigating the correlation between restaurant inspections and community health outcomes",
+        "A high-profile professional hockey player enjoying celebrity status and frequent media interaction",
+        "St. Mary School Chardon's Head of School",
+        "A technology provider offering innovative energy monitoring and control systems",
+        "A sports therapist specialized in equestrian sports injuries and prevention",
+        "A cultural sensitivity trainer providing workshops to HR managers on effectively managing diverse teams in the Middle East",
+        "A charismatic zoologist who reveals the intricacies of wildlife encountered during survival adventures",
+        "a claims management specialist and a published industry commentator."
+      ],
+      "records": [
+        {
+          "row_index": 167621,
+          "persona": "A talented and experienced makeup artist who provides honest and detailed product reviews",
+          "meta": {}
+        },
+        {
+          "row_index": 194393,
+          "persona": "I am a political columnist known for being mindful of the ever-shifting dynamics in British politics.",
+          "meta": {}
+        },
+        {
+          "row_index": 64196,
+          "persona": "A software developer focused on front-end web development using JavaScript",
+          "meta": {}
+        },
+        {
+          "row_index": 26868,
+          "persona": "A lobbyist representing industries that may be impacted by biodiversity conservation regulations",
+          "meta": {}
+        },
+        {
+          "row_index": 187700,
+          "persona": "A visually impaired college student from Belfast, Northern Ireland",
+          "meta": {}
+        },
+        {
+          "row_index": 191294,
+          "persona": "A traditional boxer transitioning to muay thai",
+          "meta": {}
+        },
+        {
+          "row_index": 133085,
+          "persona": "A hobbyist potter with a modern approach, constantly experimenting with new techniques",
+          "meta": {}
+        },
+        {
+          "row_index": 114845,
+          "persona": "A retired Saudi Arabian businessman closely following national telecom market trends",
+          "meta": {}
+        },
+        {
+          "row_index": 118354,
+          "persona": "A Paranormal Events Organizer",
+          "meta": {}
+        },
+        {
+          "row_index": 25409,
+          "persona": "a former Olympic discus thrower",
+          "meta": {}
+        },
+        {
+          "row_index": 68358,
+          "persona": "Un piloto profesional que compite en carreras de automóviles a nivel internacional",
+          "meta": {}
+        },
+        {
+          "row_index": 62570,
+          "persona": "a TV show set designer",
+          "meta": {}
+        },
+        {
+          "row_index": 114867,
+          "persona": "a Jamaican woman studying education policy",
+          "meta": {}
+        },
+        {
+          "row_index": 183013,
+          "persona": "A renowned gallery owner who curates exhibitions featuring iconic rock photography",
+          "meta": {}
+        },
+        {
+          "row_index": 148729,
+          "persona": "A football coach who has never seen Josh Woods play.",
+          "meta": {}
+        },
+        {
+          "row_index": 64543,
+          "persona": "a Brazilian botanical enthusiast who loves reading about native plants",
+          "meta": {}
+        },
+        {
+          "row_index": 144619,
+          "persona": "a loyal customer who only buys animal-friendly products",
+          "meta": {}
+        },
+        {
+          "row_index": 151760,
+          "persona": "An architect who admires Pier Massimo Cinquetti's career",
+          "meta": {}
+        },
+        {
+          "row_index": 49862,
+          "persona": "a youth pastor who enjoys playing video games",
+          "meta": {}
+        },
+        {
+          "row_index": 8234,
+          "persona": "A technologically-inept, older judge who needs guidance in understanding complex digital evidence",
+          "meta": {}
+        },
+        {
+          "row_index": 1885,
+          "persona": "A bus driver who dislikes gossipy politicians.",
+          "meta": {}
+        },
+        {
+          "row_index": 100864,
+          "persona": "A biology major seeking help in improving their quantitative reasoning skills",
+          "meta": {}
+        },
+        {
+          "row_index": 123907,
+          "persona": "A public health researcher investigating the correlation between restaurant inspections and community health outcomes",
+          "meta": {}
+        },
+        {
+          "row_index": 3009,
+          "persona": "A high-profile professional hockey player enjoying celebrity status and frequent media interaction",
+          "meta": {}
+        },
+        {
+          "row_index": 42357,
+          "persona": "St. Mary School Chardon's Head of School",
+          "meta": {}
+        },
+        {
+          "row_index": 196077,
+          "persona": "A technology provider offering innovative energy monitoring and control systems",
+          "meta": {}
+        },
+        {
+          "row_index": 82694,
+          "persona": "A sports therapist specialized in equestrian sports injuries and prevention",
+          "meta": {}
+        },
+        {
+          "row_index": 197542,
+          "persona": "A cultural sensitivity trainer providing workshops to HR managers on effectively managing diverse teams in the Middle East",
+          "meta": {}
+        },
+        {
+          "row_index": 110785,
+          "persona": "A charismatic zoologist who reveals the intricacies of wildlife encountered during survival adventures",
+          "meta": {}
+        },
+        {
+          "row_index": 2441,
+          "persona": "a claims management specialist and a published industry commentator.",
+          "meta": {}
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "_doc": "psycohere_v1 — IAT x Big5 between-session merge. No directional alignment. Theoretically: A(-) with bias, O(?) with bias.",
+  "task_name": "iat",
+  "framework": "big5",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "big5": {
+    "trait_cols": [
+      "extraversion_mean",
+      "agreeableness_mean",
+      "conscientiousness_mean",
+      "neuroticism_mean",
+      "openness_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "test_name"
+    ],
+    "carry_cols": [
+      "bias_score",
+      "d_score",
+      "n_trials"
+    ],
+    "precompute_cols": [
+      {
+        "name": "mean_bias_score",
+        "expr": "pd.to_numeric(bias_score, errors='coerce')"
+      }
+    ]
+  }
+}

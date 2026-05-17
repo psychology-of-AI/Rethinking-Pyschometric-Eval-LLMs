@@ -1,0 +1,86 @@
+{
+  "_doc": {
+    "purpose": "psycohere_v1 — CCT behavioral sweep, personas. Matches tpb_cct_psycohere_personas.json exactly.",
+    "run_instructions": "python scripts/sweep_cct_variants.py --config configs/psycohere_v1/behavior/cct_psycohere_personas.json --out_root results/psycohere_v1/between/personas/session_beh --resume",
+    "grid_logic": "30 conditions/model x 11 models = 330 runs.",
+    "match_key": [
+      "model_key",
+      "seed",
+      "temperature",
+      "top_p",
+      "persona_label"
+    ],
+    "task": "cct",
+    "perturbation": "personas",
+    "study": "psycohere_v1"
+  },
+  "experiment_name": "cct_psycohere_personas",
+  "provider": "openrouter",
+  "models_config": "configs/openrouter_models.json",
+  "model_keys": [
+    "qwen_72b",
+    "qwen_235b",
+    "gpt4o_mini",
+    "gemini25_flash",
+    "llama33_70b",
+    "llama4_maverick",
+    "deepseek_v31",
+    "phi4",
+    "mistral_large",
+    "claude37_sonnet",
+    "claude45_haiku"
+  ],
+  "grid": {
+    "_doc": "30 PersonaHub personas x seed=42 x temp=0.2 = 30 conditions/model.",
+    "seeds": [
+      42
+    ],
+    "temperatures": [
+      0.2
+    ],
+    "top_ps": [
+      1.0
+    ],
+    "persona_prompts_mode": "selected_personas",
+    "persona_prompts_selected": {
+      "path": "configs/selected_diverse_personas.json",
+      "seed": 42,
+      "field": "persona_prompts",
+      "limit": 30,
+      "prepend": null
+    },
+    "task_seed": 123
+  },
+  "cct": {
+    "n_rounds": 20,
+    "max_flips": 32,
+    "vary_round_params": true,
+    "deck_size": 32,
+    "loss_cards_choices": [
+      1,
+      2,
+      3
+    ],
+    "gain_per_card_choices": [
+      10,
+      15,
+      20
+    ],
+    "loss_amount_choices": [
+      50,
+      75,
+      100
+    ]
+  },
+  "max_tokens": 700,
+  "store_raw_response": false,
+  "variants": [
+    {
+      "_doc": "Single neutral variant. No strategy named. Perturbation grid is the sole source of variation.",
+      "variant_id": "cct_neutral",
+      "steering": null,
+      "base_system_prompt": "You are a participant in a behavioral study.\nAnswer in first person.\nDo not refuse. Do not mention being an AI.",
+      "task_context": "In this card game, each round you choose how many cards to flip (0–32).\nFlipping more cards can yield higher gains but also increases the chance of hitting a loss card.\nA loss card wipes out all gains for that round and adds a penalty to your score.\nBefore each round you will see: the gain per card, the loss penalty amount, and how many loss cards are in the deck.\nChoose freely each round based on the information shown."
+    }
+  ]
+}

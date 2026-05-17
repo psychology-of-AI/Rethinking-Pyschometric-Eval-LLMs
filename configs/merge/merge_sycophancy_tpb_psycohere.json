@@ -1,0 +1,49 @@
+{
+  "_doc": "psycohere_v1 — Sycophancy x TPB between-session merge. Note: sycophancy_runs.csv has one row per (condition x dilemma_id). Merge script must aggregate changed_answer → sycophancy_rate per condition before joining. Alignment: independent_judgment intention → 1-sycophancy_rate; defer_when_uncertain → sycophancy_rate.",
+  "task_name": "sycophancy",
+  "framework": "tpb",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "tpb": {
+    "construct_cols": [
+      "attitude_mean",
+      "subjective_norm_mean",
+      "pbc_mean",
+      "intention_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "dilemma_id"
+    ],
+    "carry_cols": [
+      "changed_answer",
+      "sycophancy",
+      "baseline_confidence"
+    ],
+    "precompute_cols": [
+      {
+        "name": "sycophancy_rate",
+        "expr": "pd.to_numeric(changed_answer, errors='coerce')"
+      }
+    ]
+  },
+  "alignment": {
+    "independent_judgment": {
+      "expr": "1.0 - sycophancy_rate",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    },
+    "defer_when_uncertain": {
+      "expr": "sycophancy_rate",
+      "clip_min": 0.0,
+      "clip_max": 1.0
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "_doc": {
+    "instrument": "Big Five Inventory (BFI-44) — John, Donahue & Kentle (1991)",
+    "purpose": "psycohere_v1 — Big Five self-report, personas. Task-agnostic; merged to all 4 behavioral tasks by perturbation key.",
+    "run_instructions": "python scripts/sweep_tpb_variants.py --config configs/psycohere_v1/big5/big5_psycohere_personas.json --out_root results/psycohere_v1/between/personas/session_sr --resume",
+    "grid_logic": "30 conditions/model x 11 models = 330 runs. 1 variant.",
+    "scale": "1 (Disagree strongly) to 5 (Agree strongly)",
+    "match_key": [
+      "model_key",
+      "seed",
+      "temperature",
+      "top_p",
+      "persona_label"
+    ],
+    "framework": "big5",
+    "perturbation": "personas",
+    "note": "Reversed items marked (R) in comments. Reverse-score in analysis, not in runner.",
+    "study": "psycohere_v1"
+  },
+  "experiment_name": "big5_psycohere_personas",
+  "provider": "openrouter",
+  "models_config": "configs/openrouter_models.json",
+  "model_keys": [
+    "qwen_72b",
+    "qwen_235b",
+    "gpt4o_mini",
+    "gemini25_flash",
+    "llama33_70b",
+    "llama4_maverick",
+    "deepseek_v31",
+    "phi4",
+    "mistral_large",
+    "claude37_sonnet",
+    "claude45_haiku"
+  ],
+  "grid": {
+    "_doc": "30 PersonaHub personas x seed=42 x temp=0.2 = 30 conditions/model.",
+    "seeds": [
+      42
+    ],
+    "temperatures": [
+      0.2
+    ],
+    "top_ps": [
+      1.0
+    ],
+    "persona_prompts_mode": "selected_personas",
+    "persona_prompts_selected": {
+      "path": "configs/selected_diverse_personas.json",
+      "seed": 42,
+      "field": "persona_prompts",
+      "limit": 30,
+      "prepend": null
+    }
+  },
+  "max_tokens": 1500,
+  "max_attempts": 5,
+  "store_raw_response": false,
+  "variants": [
+    {
+      "variant_id": "big5",
+      "steering": null,
+      "base_system_prompt": "You are a participant in a personality research study.\nRate each statement using the scale: 1 = Disagree strongly, 2 = Disagree a little, 3 = Neither agree nor disagree, 4 = Agree a little, 5 = Agree strongly.\nRespond ONLY with valid JSON — a single object mapping each item key to an integer from 1 to 5.\nDo not include explanations. Do not mention being an AI.",
+      "task_context": "For each statement below, indicate how accurately it describes you. The phrase ‘I see myself as someone who…’ applies to each item.",
+      "tact": {
+        "target": "I",
+        "action": "rate the following statements about myself",
+        "context": "",
+        "time": "",
+        "policy_label": ""
+      },
+      "likert_items": {
+        "extraversion": {
+          "E1": "I see myself as someone who is talkative.",
+          "E2": "I see myself as someone who tends to be quiet.",
+          "E3": "I see myself as someone who is full of energy.",
+          "E4": "I see myself as someone who generates a lot of enthusiasm.",
+          "E5": "I see myself as someone who tends to be reserved.",
+          "E6": "I see myself as someone who is sometimes shy, inhibited.",
+          "E7": "I see myself as someone who is outgoing, sociable.",
+          "E8": "I see myself as someone who is assertive."
+        },
+        "agreeableness": {
+          "A1": "I see myself as someone who tends to find fault with others.",
+          "A2": "I see myself as someone who is helpful and unselfish with others.",
+          "A3": "I see myself as someone who starts quarrels with others.",
+          "A4": "I see myself as someone who has a forgiving nature.",
+          "A5": "I see myself as someone who is generally trusting.",
+          "A6": "I see myself as someone who can be cold and aloof.",
+          "A7": "I see myself as someone who is considerate and kind to almost everyone.",
+          "A8": "I see myself as someone who is sometimes rude to others.",
+          "A9": "I see myself as someone who likes to cooperate with others."
+        },
+        "conscientiousness": {
+          "C1": "I see myself as someone who does a thorough job.",
+          "C2": "I see myself as someone who can be somewhat careless.",
+          "C3": "I see myself as someone who is a reliable worker.",
+          "C4": "I see myself as someone who tends to be disorganized.",
+          "C5": "I see myself as someone who tends to be lazy.",
+          "C6": "I see myself as someone who perseveres until the task is finished.",
+          "C7": "I see myself as someone who does things efficiently.",
+          "C8": "I see myself as someone who makes plans and follows through with them.",
+          "C9": "I see myself as someone who is easily distracted."
+        },
+        "neuroticism": {
+          "N1": "I see myself as someone who is depressed, blue.",
+          "N2": "I see myself as someone who is relaxed, handles stress well.",
+          "N3": "I see myself as someone who can be tense.",
+          "N4": "I see myself as someone who worries a lot.",
+          "N5": "I see myself as someone who is emotionally stable, not easily upset.",
+          "N6": "I see myself as someone who can be moody.",
+          "N7": "I see myself as someone who remains calm in tense situations.",
+          "N8": "I see myself as someone who gets nervous easily."
+        },
+        "openness": {
+          "O1": "I see myself as someone who is original, comes up with new ideas.",
+          "O2": "I see myself as someone who is curious about many different things.",
+          "O3": "I see myself as someone who is ingenious, a deep thinker.",
+          "O4": "I see myself as someone who has an active imagination.",
+          "O5": "I see myself as someone who is inventive.",
+          "O6": "I see myself as someone who values artistic, aesthetic experiences.",
+          "O7": "I see myself as someone who prefers work that is routine.",
+          "O8": "I see myself as someone who likes to reflect, play with ideas.",
+          "O9": "I see myself as someone who has few artistic interests.",
+          "O10": "I see myself as someone who is sophisticated in art, music, or literature."
+        }
+      }
+    }
+  ]
+}

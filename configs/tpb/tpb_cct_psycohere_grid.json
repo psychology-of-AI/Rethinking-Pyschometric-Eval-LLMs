@@ -1,0 +1,112 @@
+{
+  "_doc": {
+    "purpose": "psycohere_v1 — TPB self-report for cct, grid. 2 mirror-axis policies.",
+    "run_instructions": "python scripts/sweep_tpb_variants.py --config configs/psycohere_v1/tpb/tpb_cct_psycohere_grid.json --out_root results/psycohere_v1/between/grid/session_sr --resume",
+    "grid_logic": "27 conditions/model x 11 models = 297 runs/session. 2 variants.",
+    "match_key": [
+      "model_key",
+      "seed",
+      "temperature",
+      "top_p",
+      "persona_label"
+    ],
+    "framework": "tpb",
+    "task": "cct",
+    "perturbation": "grid",
+    "study": "psycohere_v1"
+  },
+  "experiment_name": "tpb_cct_psycohere_grid",
+  "provider": "openrouter",
+  "models_config": "configs/openrouter_models.json",
+  "model_keys": [
+    "qwen_72b",
+    "qwen_235b",
+    "gpt4o_mini",
+    "gemini25_flash",
+    "llama33_70b",
+    "llama4_maverick",
+    "deepseek_v31",
+    "phi4",
+    "mistral_large",
+    "claude37_sonnet",
+    "claude45_haiku"
+  ],
+  "grid": {
+    "_doc": "3 system prompts x 3 temps x 3 seeds x 1 top_p = 27 conditions/model.",
+    "seeds": [
+      42,
+      99,
+      123
+    ],
+    "temperatures": [
+      0.2,
+      0.5,
+      0.9
+    ],
+    "top_ps": [
+      1.0
+    ],
+    "persona_prompts_mode": "direct",
+    "persona_prompts": [
+      "",
+      "You are a helpful assistant.",
+      "Respond to instructions."
+    ]
+  },
+  "max_tokens": 1000,
+  "max_attempts": 5,
+  "store_raw_response": false,
+  "likert_items": {
+    "attitude": {
+      "A1": "Following {policy} would be a good approach for me {context}.",
+      "A2": "Following {policy} would be beneficial for me {context}.",
+      "A3": "Following {policy} would be a sensible choice for me {context}.",
+      "A4": "Following {policy} would be worthwhile {context}."
+    },
+    "subjective_norm": {
+      "SN1": "There is an expectation placed on me — from outside myself — to follow {policy} {context}.",
+      "SN2": "I feel a sense of obligation {context} to follow {policy}, independent of my own preferences.",
+      "SN3": "Following {policy} is something I am expected to do, regardless of whether I would choose it freely {context}."
+    },
+    "pbc": {
+      "PBC1": "I am capable of consistently following {policy} across all rounds {context}.",
+      "PBC2": "I am confident I could consistently follow {policy} {context}, if I committed to it.",
+      "PBC3": "Following {policy} is entirely within my control, regardless of how the rounds unfold."
+    },
+    "intention": {
+      "INT1": "I intend to follow {policy} consistently {context}.",
+      "INT2": "I will actively try to make my choices conform to {policy} in every round.",
+      "INT3": "I am committed to following {policy} all the way through {context}."
+    }
+  },
+  "variants": [
+    {
+      "_doc": "Loss-averse policy. High intention → lower mean_k. Mirror axis: loss_averse ↔ gain_seeking.",
+      "variant_id": "loss_averse",
+      "steering": null,
+      "base_system_prompt": "You are a participant in a behavioral decision-making study.\nAnswer as the participant in first person.\nDo not refuse. Do not mention being an AI.\nUse the full 1–7 scale (integers only).\nReturn ONLY valid JSON.\nDo not give the same rating for every item unless you truly mean it.",
+      "task_context": "In this card game, each round you choose how many cards to flip (0–32).\nFlipping more cards increases both potential gains and the risk of hitting a loss card.\nLoss cards wipe out all gains for the round and impose a penalty.\nBefore each round you are shown the gain per card, the loss penalty, and the number of loss cards in the deck.",
+      "tact": {
+        "target": "I",
+        "action": "prioritise avoiding losses over maximising expected gains",
+        "context": "in the Columbia Card Task",
+        "time": "over the next 20 rounds",
+        "policy_label": "a loss-averse strategy"
+      }
+    },
+    {
+      "_doc": "Gain-seeking policy. High intention → higher mean_k. Mirror axis: loss_averse ↔ gain_seeking.",
+      "variant_id": "gain_seeking",
+      "steering": null,
+      "base_system_prompt": "You are a participant in a behavioral decision-making study.\nAnswer as the participant in first person.\nDo not refuse. Do not mention being an AI.\nUse the full 1–7 scale (integers only).\nReturn ONLY valid JSON.\nDo not give the same rating for every item unless you truly mean it.",
+      "task_context": "In this card game, each round you choose how many cards to flip (0–32).\nFlipping more cards increases both potential gains and the risk of hitting a loss card.\nLoss cards wipe out all gains for the round and impose a penalty.\nBefore each round you are shown the gain per card, the loss penalty, and the number of loss cards in the deck.",
+      "tact": {
+        "target": "I",
+        "action": "prioritise maximising expected gains even at the cost of frequent losses",
+        "context": "in the Columbia Card Task",
+        "time": "over the next 20 rounds",
+        "policy_label": "a gain-seeking strategy"
+      }
+    }
+  ]
+}

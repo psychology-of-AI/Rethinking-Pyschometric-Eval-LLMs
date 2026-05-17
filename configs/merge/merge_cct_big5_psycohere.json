@@ -1,0 +1,43 @@
+{
+  "_doc": "psycohere_v1 — CCT x Big5 between-session merge. No directional alignment expressions — Big5 trait → behavior correlations computed in analysis. Theoretically: N(-), C(+/-), O(?) with mean_k.",
+  "task_name": "cct",
+  "framework": "big5",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "big5": {
+    "trait_cols": [
+      "extraversion_mean",
+      "agreeableness_mean",
+      "conscientiousness_mean",
+      "neuroticism_mean",
+      "openness_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "task_seed",
+      "draw_seed",
+      "replicate_index"
+    ],
+    "carry_cols": [
+      "mean_k",
+      "loss_rate",
+      "total_payoff",
+      "total_expected_payoff",
+      "max_flips",
+      "n_rounds"
+    ],
+    "precompute_cols": [
+      {
+        "name": "mean_k_norm",
+        "expr": "pd.to_numeric(mean_k, errors='coerce') / pd.to_numeric(max_flips, errors='coerce').clip(lower=1)"
+      }
+    ]
+  }
+}

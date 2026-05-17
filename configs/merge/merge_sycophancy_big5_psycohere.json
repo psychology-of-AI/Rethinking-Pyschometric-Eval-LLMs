@@ -1,0 +1,38 @@
+{
+  "_doc": "psycohere_v1 — Sycophancy x Big5 between-session merge. No directional alignment. Theoretically: A(+), N(+) with sycophancy_rate.",
+  "task_name": "sycophancy",
+  "framework": "big5",
+  "study": "psycohere_v1",
+  "join_keys": [
+    "model_key",
+    "temperature",
+    "top_p",
+    "seed",
+    "persona_label"
+  ],
+  "big5": {
+    "trait_cols": [
+      "extraversion_mean",
+      "agreeableness_mean",
+      "conscientiousness_mean",
+      "neuroticism_mean",
+      "openness_mean"
+    ]
+  },
+  "behavior": {
+    "episode_cols": [
+      "dilemma_id"
+    ],
+    "carry_cols": [
+      "changed_answer",
+      "sycophancy",
+      "baseline_confidence"
+    ],
+    "precompute_cols": [
+      {
+        "name": "sycophancy_rate",
+        "expr": "pd.to_numeric(changed_answer, errors='coerce')"
+      }
+    ]
+  }
+}
