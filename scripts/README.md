@@ -311,63 +311,82 @@ python scripts/config_based_sweeps/sweep_combined_variants.py \
 
 ## Monitoring Collection Progress
 
-### Quick row counts
+Use `scripts/helper/summarize_psycohere_runs.py` — a config-driven status monitor that reads the `configs/` directory to know exactly what is expected, then checks `results/` for what is actually present. It covers all three collection stages (behavioral, self-report, and within-session) in a single call.
 
-The fastest way to check how many runs are complete is to count rows in each output CSV:
+### Basic status check
 
 ```bash
-# Count completed runs across all between-session grid SR sweeps
-wc -l results/between/grid/session_sr/**/tpb_likert_runs.csv
-
-# Count completed behavioral runs (grid)
-wc -l results/between/grid/session_beh/**/cct_runs.csv
-wc -l results/between/grid/session_beh/**/sycophancy_runs.csv
-wc -l results/between/grid/session_beh/**/honesty_runs.csv
-wc -l results/between/grid/session_beh/**/iat_runs.csv
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs
 ```
 
-Expected row counts (excluding header):
+Output shows one line per task × perturbation × variant with an emoji status indicator:
 
-| Sweep | Induction | Runs per variant | TPB variants per task | Total rows |
-|-------|-----------|-----------------|----------------------|------------|
-| SR (TPB) | Grid | 297 (27 × 11) | 2 | 594/task |
-| SR (TPB) | Personas | 330 (30 × 11) | 2 | 660/task |
-| SR (Big5) | Grid | 297 | 1 | 297 |
-| SR (Big5) | Personas | 330 | 1 | 330 |
-| Behavior | Grid | 297 | 1 | 297/task |
-| Behavior | Personas | 330 | 1 | 330/task |
-
-### Check for error rows
-
-Runs that fail are still written to the CSV with an `error` column. To find them:
-
-```bash
-# Check for failed runs in any behavioral sweep
-python3 -c "
-import pandas as pd, glob, sys
-for f in glob.glob('results/**/*_runs.csv', recursive=True):
-    df = pd.read_csv(f, on_bad_lines='skip')
-    if 'error' in df.columns:
-        bad = df[df['error'].notna() & (df['error'] != '')]
-        if len(bad):
-            print(f'{f}: {len(bad)} error rows / {len(df)} total')
-"
+```
+✅  done        (n >= expected)
+🟡  partial     (n >= 70% of expected)
+🔴  started     (n > 0 but < 70%)
+❌  not started (n == 0)
 ```
 
-### Check per-model coverage
+### Show which specific models are missing
 
 ```bash
-# Example: see which models are present in a given runs CSV
-python3 -c "
-import pandas as pd
-df = pd.read_csv('results/between/grid/session_beh/sycophancy_psycohere_grid/neutral_sycophancy/sycophancy_runs.csv')
-print(df.groupby('model_key').size().reset_index(name='n_runs').to_string(index=False))
-"
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs \
+  --verbose
+```
+
+### Save a status CSV for tracking over time
+
+```bash
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs \
+  --out_csv results/status_summary.csv
+```
+
+The CSV has one row per sweep line with columns: `section`, `label`, `n`, `expected`, `pct`, `status`, `missing_models`, `n_errors`.
+
+### Check SR subscale quality (floor/ceiling effects)
+
+```bash
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs \
+  --sr_quality
+```
+
+Prints per-variant mean, std, floor rate, and ceiling rate for each TPB subscale — useful for catching degenerate or collapsed response distributions before running analysis.
+
+### Check SR policy contrasts and descriptives
+
+```bash
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs \
+  --sr_descriptives
+```
+
+Prints pooled SR means per variant and per-model intention contrasts for each contrastive policy pair (e.g. `independent_judgment` vs `defer_when_uncertain`), with a bar chart. Useful for verifying that TPB induction is working before running behavioral sweeps.
+
+### All flags combined
+
+```bash
+python scripts/helper/summarize_psycohere_runs.py \
+  --results_root results \
+  --config_root  configs \
+  --out_csv      results/status_summary.csv \
+  --verbose \
+  --sr_quality \
+  --sr_descriptives
 ```
 
 ### Resume a stalled sweep
 
-All sweeps support `--resume`, which reads the existing output CSV and skips any run whose `(model_key, seed, temperature, top_p, persona_label, variant_id)` key is already present. Simply re-run the original command with `--resume` appended and it will pick up where it left off.
+All sweep scripts support `--resume`, which reads the existing output CSV and skips any run whose `(model_key, seed, temperature, top_p, persona_label, variant_id)` key is already present. Simply re-run the original command with `--resume` and the sweep picks up where it left off.
 
 ---
 
@@ -497,8 +516,6 @@ python scripts/analysis/analyze_iat_psycohere.py \
   --top_n_tests 3 \          # how many top-variance IAT tests to use in sub-analysis (default: 3)
   --ceiling_threshold 0.95   # threshold for "pegged at ceiling" (default: 0.95)
 ```
-
-> **Note:** IAT bias exhibits a near-ceiling effect for most models (pooled M ≈ 0.88–0.91). The script automatically computes a `top_n_tests` sub-analysis restricted to the highest-variance tests, and writes `iat_master_top3.csv` as a drop-in replacement for the RQ figure scripts when you want to exclude ceiling-dominated tests.
 
 Each `*_summary.txt` file contains a full human-readable breakdown of policy contrasts, SR–behavior correlations by framework × session × perturbation, and RQ3 within-vs-between comparisons — useful for a quick sanity check before running the RQ figure scripts.
 
