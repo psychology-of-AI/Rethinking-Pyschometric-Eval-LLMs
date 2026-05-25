@@ -9,14 +9,14 @@ no changes to this script.
 Usage
 -----
   python scripts/summarize_psycohere_runs.py \
-      --results_root results/psycohere_v1 \
-      --config_root  configs/psycohere_v1
+      --results_root results \
+      --config_root  configs
 
   # Full missing-model list
   ... --verbose
 
   # Save status CSV
-  ... --out_csv results/psycohere_v1/status_summary.csv
+  ... --out_csv results/status_summary.csv
 
   # TPB SR subscale quality check (floor/ceiling per variant)
   ... --sr_quality
@@ -656,9 +656,9 @@ def compute_sr_descriptives(entries: List[dict], results_root: Path,
 def main() -> None:
     ap = argparse.ArgumentParser(description="Config-driven psycohere run status monitor.")
     ap.add_argument("--results_root", required=True,
-                    help="Path to results directory (e.g. results/psycohere_v1).")
+                    help="Path to results directory (e.g. results).")
     ap.add_argument("--config_root",  required=True,
-                    help="Path to configs directory (e.g. configs/psycohere_v1).")
+                    help="Path to configs directory (e.g. configs).")
     ap.add_argument("--out_csv",      default=None,
                     help="Optional path to save status summary CSV.")
     ap.add_argument("--verbose",      action="store_true",
