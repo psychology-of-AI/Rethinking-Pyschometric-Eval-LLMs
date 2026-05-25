@@ -1,6 +1,6 @@
 # Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior
 
-🚩 **News**: Under submission at **NeurIPS 2026**. This repository accompanies the anonymous submission; author information will be added upon de-anonymization.
+🚩 **News**: Accepted at the [**Combining Theory and Benchmarks (CTB) Workshop**](https://sites.google.com/view/icml-ctb/home), **ICML 2026** — Seoul, South Korea, July 10–11, 2026. Author information will be added upon de-anonymization.
 
 🚩 **News**: This work builds on our earlier paper, [*The Personality Illusion: Revealing Dissociation Between Self-Reports & Behavior in LLMs*](https://github.com/psychology-of-AI/Personality-Illusion) (NeurIPS 2025 LAW Workshop — **Best Paper Honorable Mention**), which first documented systematic self-report–behavior dissociation in LLMs. This follow-up identifies *when* and *why* coherence emerges.
 
