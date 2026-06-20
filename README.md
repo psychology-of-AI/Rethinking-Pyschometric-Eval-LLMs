@@ -122,7 +122,3 @@ If you find this work useful, please consider citing our paper and/or our [prior
   year={2025}
 }
 ```
-
-## 📜 License
-
-MIT — see [LICENSE](./LICENSE).
