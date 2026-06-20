@@ -98,17 +98,28 @@ We **welcome contributions** — new self-reports, behavioral tasks, or LLMs. Pl
 
 ## 📑 Citation
 
-If you find this work useful, please also consider citing our prior paper this work builds upon:
+[Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior](https://arxiv.org/abs/2606.12730)  
+**Oral Presentation** @ ICML 2026 Workshop on Combining Theory and Benchmarks (CTB), Under Review at Conference <br>
+[Rafal Kocielnik](https://www.rkocielnik.com/)<sup>1</sup>, [Pengrui Han](https://pengrui-han.github.io/)<sup>1,2</sup>, [Peiyang Song](https://peiyang-song.github.io/)<sup>1</sup>, [Myrl G. Marmarelis](https://myrl.marmarel.is/)<sup>1</sup>, [Ramit Debnath](https://www.arct.cam.ac.uk/staff/dr-ramit-debnath)<sup>3</sup>, [Dean Mobbs](https://www.hss.caltech.edu/people/dean-mobbs)<sup>1</sup>, [Anima Anandkumar](https://tensorlab.cms.caltech.edu/users/anima/)<sup>1</sup>, [R. Michael Alvarez](https://www.hss.caltech.edu/people/r-michael-alvarez)<sup>1</sup>  <br>
+<sup>1</sup> California Institute of Technology; <sup>2</sup> University of Illinois Urbana-Champaign; <sup>3</sup> University of Cambridge <br>
+
+If you find this work useful, please consider citing our paper and/or our [prior work](https://arxiv.org/abs/2509.03730) this paper builds upon:
 
 ```bibtex
-@misc{han2025personalityillusionrevealingdissociation,
-  title={The Personality Illusion: Revealing Dissociation Between Self-Reports & Behavior in LLMs},
-  author={Pengrui Han and Rafal Kocielnik and Peiyang Song and Ramit Debnath and Dean Mobbs and Anima Anandkumar and R. Michael Alvarez},
-  year={2025},
-  eprint={2509.03730},
-  archivePrefix={arXiv},
-  primaryClass={cs.AI},
-  url={https://arxiv.org/abs/2509.03730},
+@article{kocielnik2026rethinking,
+  title={Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior},
+  author={Kocielnik, Rafal and Han, Pengrui and Song, Peiyang and Marmarelis, Myrl G and Debnath, Ramit and Mobbs, Dean and Anandkumar, Anima and Alvarez, R Michael},
+  journal={arXiv preprint arXiv:2606.12730},
+  year={2026}
+}
+```
+
+```bibtex
+@article{han2025personality,
+  title={The personality illusion: Revealing dissociation between self-reports \& behavior in llms},
+  author={Han, Pengrui and Kocielnik, Rafal and Song, Peiyang and Debnath, Ramit and Mobbs, Dean and Anandkumar, Anima and Alvarez, R Michael},
+  journal={arXiv preprint arXiv:2509.03730},
+  year={2025}
 }
 ```
 
