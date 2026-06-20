@@ -1,11 +1,11 @@
 # Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior
 
-🚩 **News**: Accepted at the [**Combining Theory and Benchmarks (CTB) Workshop**](https://sites.google.com/view/icml-ctb/home), **ICML 2026** — Seoul, South Korea, July 10–11, 2026.
+🚩 **News**: Accepted as **Oral Presentation** at the [**Combining Theory and Benchmarks (CTB) Workshop**](https://sites.google.com/view/icml-ctb/home), **ICML 2026** — Seoul, South Korea, July 10–11, 2026.
 
-🚩 **News**: This work builds on our earlier paper, [*The Personality Illusion: Revealing Dissociation Between Self-Reports & Behavior in LLMs*](https://github.com/psychology-of-AI/Personality-Illusion) (NeurIPS 2025 LAW Workshop — **Best Paper Honorable Mention**), which first documented systematic self-report–behavior dissociation in LLMs. This follow-up identifies *when* and *why* coherence emerges.
+This work builds on our earlier work, [*The Personality Illusion: Revealing Dissociation Between Self-Reports & Behavior in LLMs*](https://github.com/psychology-of-AI/Personality-Illusion) (**ICML 2026** + **Best Paper Honorable Mention** @ NeurIPS 2025 LAW Workshop), which first documented systematic self-report–behavior dissociation in LLMs. This follow-up identifies *when* and *why* coherence emerges.
 
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://psychology-of-ai.github.io/)
-[![arXiv](https://img.shields.io/badge/arXiv-coming_soon-red?logo=arxiv)](#)
+[![arXiv](https://img.shields.io/badge/arXiv-2606.12730-red?logo=arxiv)](https://arxiv.org/abs/2606.12730)
 [![License](https://img.shields.io/badge/LICENSE-MIT-green)](./LICENSE)
 
 ![Workflow](./assets/workflow.jpg)
@@ -97,8 +97,6 @@ We **welcome contributions** — new self-reports, behavioral tasks, or LLMs. Pl
 - Feature requests → Discussions
 
 ## 📑 Citation
-
-> *Author list and BibTeX will be added upon de-anonymization.*
 
 If you find this work useful, please also consider citing our prior paper this work builds upon:
 
