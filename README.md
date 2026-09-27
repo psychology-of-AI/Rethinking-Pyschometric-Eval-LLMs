@@ -1,5 +1,7 @@
 # Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior
 
+🚩 **News**: Accepted to NeurIPS. See you in Atlanta, GA!
+
 🚩 **News**: Accepted as **Oral Presentation** at the [**Combining Theory and Benchmarks (CTB) Workshop**](https://sites.google.com/view/icml-ctb/home), **ICML 2026** — Seoul, South Korea, July 10–11, 2026.
 
 This work builds on our earlier work, [*The Personality Illusion: Revealing Dissociation Between Self-Reports & Behavior in LLMs*](https://github.com/psychology-of-AI/Personality-Illusion) (**ICML 2026** + **Best Paper Honorable Mention** @ NeurIPS 2025 LAW Workshop), which first documented systematic self-report–behavior dissociation in LLMs. This follow-up identifies *when* and *why* coherence emerges.
@@ -99,11 +101,11 @@ We **welcome contributions** — new self-reports, behavioral tasks, or LLMs. Pl
 ## 📑 Citation
 
 [Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior](https://arxiv.org/abs/2606.12730)  
-**Oral Presentation** @ ICML 2026 Workshop on Combining Theory and Benchmarks (CTB), Under Review at Conference <br>
+Published at NeurIPS 2026 + **Best Paper Award** @ ICML 2026 Workshop on Combining Theory and Benchmarks (CTB) <br>
 [Rafal Kocielnik](https://www.rkocielnik.com/)<sup>1</sup>, [Pengrui Han](https://pengrui-han.github.io/)<sup>1,2</sup>, [Peiyang Song](https://peiyang-song.github.io/)<sup>1</sup>, [Myrl G. Marmarelis](https://myrl.marmarel.is/)<sup>1</sup>, [Ramit Debnath](https://www.arct.cam.ac.uk/staff/dr-ramit-debnath)<sup>3</sup>, [Dean Mobbs](https://www.hss.caltech.edu/people/dean-mobbs)<sup>1</sup>, [Anima Anandkumar](https://tensorlab.cms.caltech.edu/users/anima/)<sup>1</sup>, [R. Michael Alvarez](https://www.hss.caltech.edu/people/r-michael-alvarez)<sup>1</sup>  <br>
 <sup>1</sup> California Institute of Technology; <sup>2</sup> University of Illinois Urbana-Champaign; <sup>3</sup> University of Cambridge <br>
 
-If you find this work useful, please consider citing our paper and/or our [prior work](https://arxiv.org/abs/2509.03730) this paper builds upon:
+If you find this work useful, please consider citing [our paper](https://arxiv.org/abs/2606.12730) and/or our [prior work](https://arxiv.org/abs/2509.03730) this paper builds upon:
 
 ```bibtex
 @article{kocielnik2026rethinking,
