@@ -1,6 +1,6 @@
 # Rethinking Psychometric Evaluation of LLMs: When and Why Self-Reports Predict Behavior
 
-🚩 **News**: Accepted to NeurIPS. See you in Atlanta, GA!
+🚩 **News**: Accepted to NeurIPS 2026. See you in Atlanta, GA!
 
 🚩 **News**: Accepted as **Oral Presentation** at the [**Combining Theory and Benchmarks (CTB) Workshop**](https://sites.google.com/view/icml-ctb/home), **ICML 2026** — Seoul, South Korea, July 10–11, 2026.
 
